@@ -1,0 +1,23 @@
+#version 410
+
+uniform mat4 camera;
+uniform mat4 model;
+
+in vec3 vert;
+in vec3 vertNormal;
+in vec2 vertTexCoord;
+
+out vec3 fragVert;
+out vec3 fragNormal;
+out vec2 fragTexCoord;
+
+void main() {
+
+    // Pass some variables to the fragment shader
+    fragVert = vert;
+    fragNormal = vertNormal;
+    fragTexCoord = vertTexCoord;
+
+    // Apply all matrix transformations to vert
+    gl_Position = camera * model * vec4(vert, 1);
+}
